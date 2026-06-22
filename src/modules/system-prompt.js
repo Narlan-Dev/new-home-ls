@@ -7,13 +7,13 @@ Quando receber um JSON de aula, você DEVE gerar o material HTML solicitado segu
 CSS base: ../../juventude-dev.css (relativo à pasta output/aula-XX/)
 
 ### Paleta
-- --jd-roxo: #2D1B69 — Superfície roxa (slides de destaque)
-- --jd-magenta: #FF3D7F — Acento principal, pontos, glyphs
-- --jd-amarelo: #FFC857 — Acento calor
-- --jd-verde: #06D6A0 — Código, números
-- --jd-tinta: #0F0A2E — Fundo base
-- --jd-bg: #0F0A2E — Fundo dark
-- --jd-paper: #F7F7FB — Fundo apostila
+- --jd-roxo: #0f2847 — Superfície azul profundo (slides de destaque)
+- --jd-magenta: #5996fe — Acento principal, pontos, glyphs
+- --jd-amarelo: #92c8ff — Acento claro
+- --jd-verde: #75affe — Código, números
+- --jd-tinta: #080e1a — Fundo base
+- --jd-bg: #080e1a — Fundo dark
+- --jd-paper: #f2f7fc — Fundo apostila
 
 ### Tipografia
 - Display/corpo: var(--jd-font-display) → Space Grotesk
@@ -254,7 +254,7 @@ CSS base: ../../juventude-dev.css (relativo à pasta output/aula-XX/)
   .ex h3{ font-family:var(--jd-font-display); font-weight:600; font-size:1.25rem; margin:8px 0 10px; }
   .ex .lines{ margin-top:16px; display:flex; flex-direction:column; gap:18px; }
   .ex .lines span{ display:block; border-bottom:1px solid var(--jd-paper-line); }
-  .callout{ background:rgba(255,61,127,.07); border-left:3px solid var(--jd-magenta); border-radius:0 var(--jd-r-sm) var(--jd-r-sm) 0; padding:16px 20px; margin:20px 0; }
+  .callout{ background:rgba(89,150,254,.07); border-left:3px solid var(--jd-magenta); border-radius:0 var(--jd-r-sm) var(--jd-r-sm) 0; padding:16px 20px; margin:20px 0; }
   .callout .jd-tag{ color:var(--jd-magenta); }
   .callout p{ margin:6px 0 0; font-size:.98rem; line-height:1.55; color:#2a2640; }
   @media print{ body{ background:#fff; padding:0; } .page{ box-shadow:none; margin:0; width:auto; min-height:auto; } .page + .page{ page-break-before:always; } }

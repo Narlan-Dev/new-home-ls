@@ -15,7 +15,7 @@ body.jd {
   justify-content: space-between;
   padding: 0 32px;
   height: 60px;
-  background: rgba(15, 10, 46, 0.92);
+  background: rgba(8, 14, 26, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--jd-line);
 }
@@ -187,7 +187,7 @@ body.jd {
 
 .gen-input:focus {
   border-color: var(--jd-magenta);
-  box-shadow: 0 0 0 3px rgba(255, 61, 127, 0.15);
+  box-shadow: 0 0 0 3px rgba(89, 150, 254, 0.15);
 }
 
 .gen-input::placeholder {
@@ -203,7 +203,7 @@ body.jd {
 .gen-select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239D9AB8' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a92b8' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
@@ -251,7 +251,7 @@ body.jd {
 }
 
 .gen-toggle:checked + .toggle-track {
-  background: rgba(255, 61, 127, 0.2);
+  background: rgba(89, 150, 254, 0.2);
   border-color: var(--jd-magenta);
 }
 
@@ -379,7 +379,7 @@ body.jd {
 .btn-add:hover {
   border-color: var(--jd-magenta);
   color: var(--jd-magenta);
-  background: rgba(255, 61, 127, 0.05);
+  background: rgba(89, 150, 254, 0.05);
 }
 
 .btn-add span {
@@ -552,20 +552,20 @@ body.jd {
 }
 
 .gen-status.is-loading {
-  background: rgba(255, 61, 127, 0.08);
-  border: 1px solid rgba(255, 61, 127, 0.25);
+  background: rgba(89, 150, 254, 0.08);
+  border: 1px solid rgba(89, 150, 254, 0.25);
   color: var(--jd-ink-soft);
 }
 
 .gen-status.is-error {
-  background: rgba(255, 61, 127, 0.1);
-  border: 1px solid rgba(255, 61, 127, 0.4);
-  color: #ff8baa;
+  background: rgba(89, 150, 254, 0.1);
+  border: 1px solid rgba(89, 150, 254, 0.4);
+  color: #aee0ff;
 }
 
 .gen-status.is-success {
-  background: rgba(6, 214, 160, 0.08);
-  border: 1px solid rgba(6, 214, 160, 0.3);
+  background: rgba(117, 175, 254, 0.08);
+  border: 1px solid rgba(117, 175, 254, 0.3);
   color: var(--jd-verde);
 }
 
@@ -610,7 +610,7 @@ body.jd {
 }
 
 .btn-primary:hover {
-  background: #e62d6e;
+  background: #4080e8;
   box-shadow: var(--jd-glow-magenta);
 }
 .btn-primary:disabled {
@@ -638,11 +638,11 @@ body.jd {
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 4px 24px -8px rgba(255, 61, 127, 0.5);
+  box-shadow: 0 4px 24px -8px rgba(89, 150, 254, 0.5);
 }
 
 .btn-generate:hover {
-  background: #e62d6e;
+  background: #4080e8;
   transform: translateY(-1px);
 }
 .btn-generate:disabled {

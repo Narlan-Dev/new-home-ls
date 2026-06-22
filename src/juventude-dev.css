@@ -9,39 +9,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  /* ---- PALETA NÚCLEO (slide 02 — Recôncavo Code) ---- */
-  --jd-roxo:        #2D1B69;  /* Roxo Profundo  · primária / superfície  */
-  --jd-magenta:     #FF3D7F;  /* Magenta Tropical · energia / acento 1   */
-  --jd-amarelo:     #FFC857;  /* Amarelo Recôncavo · calor / acento 2    */
-  --jd-verde:       #06D6A0;  /* Verde Terminal · código / acento 3      */
-  --jd-tinta:       #0F0A2E;  /* Tinta Meia-Noite · fundo                */
+  /* ---- PALETA NÚCLEO ---- */
+  --jd-roxo:        #0f2847;  /* Azul Profundo   · primária / superfície  */
+  --jd-magenta:     #5996fe;  /* Azul Vivo       · energia / acento 1     */
+  --jd-amarelo:     #92c8ff;  /* Azul Claro      · destaque / acento 2    */
+  --jd-verde:       #75affe;  /* Azul Médio      · código / acento 3      */
+  --jd-tinta:       #080e1a;  /* Marinho Noturno · fundo                  */
 
   /* ---- SUPERFÍCIES (escuro) ---- */
-  --jd-bg:          #0F0A2E;  /* fundo base                              */
-  --jd-surface:     #1A1A2E;  /* cartão / painel                         */
-  --jd-surface-2:   #1B1538;  /* painel elevado                          */
-  --jd-surface-3:   #120D2A;  /* recuado / código                        */
-  --jd-line:        rgba(255,255,255,.10); /* divisórias                 */
-  --jd-line-strong: rgba(255,255,255,.18);
+  --jd-bg:          #080e1a;  /* fundo base                              */
+  --jd-surface:     #0f1729;  /* cartão / painel                         */
+  --jd-surface-2:   #111c32;  /* painel elevado                          */
+  --jd-surface-3:   #0b1220;  /* recuado / código                        */
+  --jd-line:        rgba(174,224,255,.10); /* divisórias                  */
+  --jd-line-strong: rgba(174,224,255,.18);
 
   /* ---- TEXTO (sobre escuro) ---- */
   --jd-ink:         #FFFFFF;  /* títulos                                  */
-  --jd-ink-soft:    #E8E6F5;  /* corpo                                    */
-  --jd-muted:       #9D9AB8;  /* secundário                               */
-  --jd-muted-2:     #8B85B5;  /* terciário / metadados                    */
+  --jd-ink-soft:    #d4e4f7;  /* corpo                                    */
+  --jd-muted:       #7a92b8;  /* secundário                               */
+  --jd-muted-2:     #5d7a9e;  /* terciário / metadados                    */
 
   /* ---- SUPERFÍCIES (claro — apostila / impressão) ---- */
-  --jd-paper:       #F7F7FB;  /* papel                                    */
-  --jd-paper-2:     #F4F4FA;  /* bloco recuado                            */
-  --jd-paper-line:  #E5E5EE;  /* divisória clara                          */
-  --jd-ink-dark:    #1A1A2E;  /* texto sobre claro                        */
-  --jd-muted-dark:  #6B7280;  /* texto secundário sobre claro             */
+  --jd-paper:       #f2f7fc;  /* papel                                    */
+  --jd-paper-2:     #eaf2fb;  /* bloco recuado                            */
+  --jd-paper-line:  #d4e2f0;  /* divisória clara                          */
+  --jd-ink-dark:    #0f1729;  /* texto sobre claro                        */
+  --jd-muted-dark:  #5a6f8a;  /* texto secundário sobre claro             */
 
   /* ---- TERMINAL (controles macOS em blocos de código) ---- */
-  --jd-term-red:    #FF5F57;
-  --jd-term-yellow: #FEBC2E;
-  --jd-term-green:  #28C840;
-  --jd-rosa-forte:  #E11D48;
+  --jd-term-red:    #5996fe;
+  --jd-term-yellow: #75affe;
+  --jd-term-green:  #92c8ff;
+  --jd-rosa-forte:  #3a7ae8;
 
   /* ---- TIPOGRAFIA ---- */
   --jd-font-display: 'Space Grotesk', system-ui, sans-serif;
@@ -54,7 +54,7 @@
   --jd-r-lg: 20px;
   --jd-r-pill: 999px;
   --jd-shadow: 0 24px 60px -28px rgba(0,0,0,.65);
-  --jd-glow-magenta: 0 0 0 1px rgba(255,61,127,.35), 0 16px 40px -18px rgba(255,61,127,.45);
+  --jd-glow-magenta: 0 0 0 1px rgba(89,150,254,.35), 0 16px 40px -18px rgba(89,150,254,.45);
 
   /* ---- ESPAÇAMENTO (escala base 4px) ---- */
   --jd-s1: 4px;  --jd-s2: 8px;  --jd-s3: 12px; --jd-s4: 16px;
@@ -120,9 +120,9 @@
   color: var(--jd-ink-soft);
   background: rgba(255,255,255,.04);
 }
-.jd-chip--magenta { color: var(--jd-magenta); border-color: rgba(255,61,127,.45); background: rgba(255,61,127,.10); }
-.jd-chip--amarelo { color: var(--jd-amarelo); border-color: rgba(255,200,87,.45); background: rgba(255,200,87,.10); }
-.jd-chip--verde   { color: var(--jd-verde);   border-color: rgba(6,214,160,.45);  background: rgba(6,214,160,.10); }
+.jd-chip--magenta { color: var(--jd-magenta); border-color: rgba(89,150,254,.45); background: rgba(89,150,254,.10); }
+.jd-chip--amarelo { color: var(--jd-amarelo); border-color: rgba(146,200,255,.45); background: rgba(146,200,255,.10); }
+.jd-chip--verde   { color: var(--jd-verde);   border-color: rgba(117,175,254,.45);  background: rgba(117,175,254,.10); }
 
 /* número de seção tipo [ 01 ] / 01 */
 .jd-num {
