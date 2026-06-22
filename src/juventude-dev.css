@@ -94,7 +94,7 @@
   align-items: center;
   gap: .5ch;
 }
-.jd-tag::before { content: '//'; color: var(--jd-magenta); font-weight: 600; }
+.jd-tag::before { content: '\2661'; color: var(--jd-magenta); font-weight: 600; font-size: 1.3em; }
 .jd-light .jd-tag { color: var(--jd-muted-dark); }
 
 /* glifo </>  */
@@ -273,7 +273,7 @@
   align-items: baseline;
   gap: .5ch;
 }
-.jd-wordmark__glyph { font-family: var(--jd-font-mono); color: var(--jd-magenta); font-weight: 600; }
+.jd-wordmark__glyph { font-family: var(--jd-font-mono); color: var(--jd-magenta); font-weight: 600; font-size: 1.3em; }
 .jd-light .jd-wordmark { color: var(--jd-ink-dark); }
 
 /* listras de placeholder de imagem */
