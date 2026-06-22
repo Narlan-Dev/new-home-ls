@@ -1,0 +1,294 @@
+/* ===================================================================
+   JUVENTUDE DEV — "Recôncavo Code"
+   Sistema visual do projeto · código, cor e território
+   -------------------------------------------------------------------
+   Importe em qualquer material:  <link rel="stylesheet" href="juventude-dev.css">
+   Fontes:  Space Grotesk (display/texto) · JetBrains Mono (código/tags)
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- PALETA NÚCLEO (slide 02 — Recôncavo Code) ---- */
+  --jd-roxo:        #2D1B69;  /* Roxo Profundo  · primária / superfície  */
+  --jd-magenta:     #FF3D7F;  /* Magenta Tropical · energia / acento 1   */
+  --jd-amarelo:     #FFC857;  /* Amarelo Recôncavo · calor / acento 2    */
+  --jd-verde:       #06D6A0;  /* Verde Terminal · código / acento 3      */
+  --jd-tinta:       #0F0A2E;  /* Tinta Meia-Noite · fundo                */
+
+  /* ---- SUPERFÍCIES (escuro) ---- */
+  --jd-bg:          #0F0A2E;  /* fundo base                              */
+  --jd-surface:     #1A1A2E;  /* cartão / painel                         */
+  --jd-surface-2:   #1B1538;  /* painel elevado                          */
+  --jd-surface-3:   #120D2A;  /* recuado / código                        */
+  --jd-line:        rgba(255,255,255,.10); /* divisórias                 */
+  --jd-line-strong: rgba(255,255,255,.18);
+
+  /* ---- TEXTO (sobre escuro) ---- */
+  --jd-ink:         #FFFFFF;  /* títulos                                  */
+  --jd-ink-soft:    #E8E6F5;  /* corpo                                    */
+  --jd-muted:       #9D9AB8;  /* secundário                               */
+  --jd-muted-2:     #8B85B5;  /* terciário / metadados                    */
+
+  /* ---- SUPERFÍCIES (claro — apostila / impressão) ---- */
+  --jd-paper:       #F7F7FB;  /* papel                                    */
+  --jd-paper-2:     #F4F4FA;  /* bloco recuado                            */
+  --jd-paper-line:  #E5E5EE;  /* divisória clara                          */
+  --jd-ink-dark:    #1A1A2E;  /* texto sobre claro                        */
+  --jd-muted-dark:  #6B7280;  /* texto secundário sobre claro             */
+
+  /* ---- TERMINAL (controles macOS em blocos de código) ---- */
+  --jd-term-red:    #FF5F57;
+  --jd-term-yellow: #FEBC2E;
+  --jd-term-green:  #28C840;
+  --jd-rosa-forte:  #E11D48;
+
+  /* ---- TIPOGRAFIA ---- */
+  --jd-font-display: 'Space Grotesk', system-ui, sans-serif;
+  --jd-font-body:    'Space Grotesk', system-ui, sans-serif;
+  --jd-font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---- RAIO / SOMBRA ---- */
+  --jd-r-sm: 8px;
+  --jd-r-md: 14px;
+  --jd-r-lg: 20px;
+  --jd-r-pill: 999px;
+  --jd-shadow: 0 24px 60px -28px rgba(0,0,0,.65);
+  --jd-glow-magenta: 0 0 0 1px rgba(255,61,127,.35), 0 16px 40px -18px rgba(255,61,127,.45);
+
+  /* ---- ESPAÇAMENTO (escala base 4px) ---- */
+  --jd-s1: 4px;  --jd-s2: 8px;  --jd-s3: 12px; --jd-s4: 16px;
+  --jd-s5: 24px; --jd-s6: 32px; --jd-s7: 48px; --jd-s8: 64px;
+  --jd-s9: 96px;
+}
+
+/* ===================================================================
+   BASE
+   =================================================================== */
+.jd, .jd * { box-sizing: border-box; }
+.jd {
+  background: var(--jd-bg);
+  color: var(--jd-ink-soft);
+  font-family: var(--jd-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* tema claro — papel/apostila */
+.jd-light {
+  background: var(--jd-paper);
+  color: var(--jd-ink-dark);
+}
+
+/* ===================================================================
+   MOTIVO GRÁFICO  ·  // </> { } [ 01 ]
+   =================================================================== */
+
+/* breadcrumb monospace com prefixo //  */
+.jd-tag {
+  font-family: var(--jd-font-mono);
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: var(--jd-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: .5ch;
+}
+.jd-tag::before { content: '//'; color: var(--jd-magenta); font-weight: 600; }
+.jd-light .jd-tag { color: var(--jd-muted-dark); }
+
+/* glifo </>  */
+.jd-glyph {
+  font-family: var(--jd-font-mono);
+  font-weight: 600;
+  color: var(--jd-magenta);
+  letter-spacing: -.02em;
+}
+
+/* chip colorido */
+.jd-chip {
+  font-family: var(--jd-font-mono);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  display: inline-flex;
+  align-items: center;
+  gap: .5ch;
+  padding: .35em .75em;
+  border-radius: var(--jd-r-pill);
+  border: 1px solid var(--jd-line-strong);
+  color: var(--jd-ink-soft);
+  background: rgba(255,255,255,.04);
+}
+.jd-chip--magenta { color: var(--jd-magenta); border-color: rgba(255,61,127,.45); background: rgba(255,61,127,.10); }
+.jd-chip--amarelo { color: var(--jd-amarelo); border-color: rgba(255,200,87,.45); background: rgba(255,200,87,.10); }
+.jd-chip--verde   { color: var(--jd-verde);   border-color: rgba(6,214,160,.45);  background: rgba(6,214,160,.10); }
+
+/* número de seção tipo [ 01 ] / 01 */
+.jd-num {
+  font-family: var(--jd-font-mono);
+  font-weight: 600;
+  color: var(--jd-magenta);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+}
+
+/* eyebrow / rótulo de seção */
+.jd-eyebrow {
+  font-family: var(--jd-font-mono);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--jd-muted);
+}
+.jd-light .jd-eyebrow { color: var(--jd-muted-dark); }
+
+/* ===================================================================
+   TIPOGRAFIA — DISPLAY
+   ".dot" = ponto magenta de fechamento dos títulos
+   =================================================================== */
+.jd-display {
+  font-family: var(--jd-font-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  color: var(--jd-ink);
+  margin: 0;
+}
+.jd-light .jd-display { color: var(--jd-ink-dark); }
+.jd-display .dot { color: var(--jd-magenta); }
+
+/* ===================================================================
+   CARTÃO
+   =================================================================== */
+.jd-card {
+  background: var(--jd-surface);
+  border: 1px solid var(--jd-line);
+  border-radius: var(--jd-r-lg);
+  padding: var(--jd-s6);
+}
+.jd-card--quiet { background: var(--jd-surface-3); }
+.jd-light .jd-card {
+  background: #fff;
+  border-color: var(--jd-paper-line);
+  box-shadow: 0 1px 2px rgba(20,16,46,.04);
+}
+
+/* ===================================================================
+   BOTÃO
+   =================================================================== */
+.jd-btn {
+  font-family: var(--jd-font-mono);
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  display: inline-flex;
+  align-items: center;
+  gap: .6ch;
+  padding: .8em 1.4em;
+  border-radius: var(--jd-r-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.jd-btn:hover { transform: translateY(-1px); }
+.jd-btn--primary { background: var(--jd-magenta); color: #fff; box-shadow: var(--jd-glow-magenta); }
+.jd-btn--ghost   { background: transparent; color: var(--jd-ink-soft); border-color: var(--jd-line-strong); }
+.jd-light .jd-btn--ghost { color: var(--jd-ink-dark); border-color: var(--jd-paper-line); }
+
+/* ===================================================================
+   BLOCO DE CÓDIGO (terminal)
+   =================================================================== */
+.jd-code {
+  font-family: var(--jd-font-mono);
+  background: var(--jd-surface-3);
+  border: 1px solid var(--jd-line);
+  border-radius: var(--jd-r-md);
+  overflow: hidden;
+}
+.jd-code__bar {
+  display: flex;
+  align-items: center;
+  gap: .6ch;
+  padding: .7em 1em;
+  border-bottom: 1px solid var(--jd-line);
+  background: rgba(255,255,255,.03);
+}
+.jd-code__dot { width: 11px; height: 11px; border-radius: 50%; }
+.jd-code__dot--r { background: var(--jd-term-red); }
+.jd-code__dot--y { background: var(--jd-term-yellow); }
+.jd-code__dot--g { background: var(--jd-term-green); }
+.jd-code__name { margin-left: .6ch; font-size: .78rem; color: var(--jd-muted); }
+.jd-code__body { padding: 1.1em 1.3em; font-size: .92rem; line-height: 1.65; color: var(--jd-ink-soft); white-space: pre; overflow-x: auto; }
+/* tokens de sintaxe */
+.tok-com { color: var(--jd-muted-2); }            /* comentário */
+.tok-kw  { color: var(--jd-magenta); }            /* palavra-chave */
+.tok-str { color: var(--jd-amarelo); }            /* string */
+.tok-num { color: var(--jd-verde); }              /* número */
+.tok-fn  { color: var(--jd-verde); }              /* função */
+.tok-out { color: var(--jd-muted); }              /* saída/prompt */
+
+/* ===================================================================
+   ESTATÍSTICA (número grande)
+   =================================================================== */
+.jd-stat__value {
+  font-family: var(--jd-font-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--jd-magenta);
+}
+.jd-stat__label {
+  font-family: var(--jd-font-mono);
+  font-size: .8rem;
+  color: var(--jd-muted);
+  letter-spacing: .02em;
+}
+.jd-light .jd-stat__label { color: var(--jd-muted-dark); }
+
+/* ===================================================================
+   RODAPÉ DE MATERIAL  ·  JUVENTUDE DEV ............ 00 / 00
+   =================================================================== */
+.jd-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--jd-font-mono);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  color: var(--jd-muted);
+}
+.jd-footer__brand { color: var(--jd-ink-soft); font-weight: 600; }
+.jd-light .jd-footer__brand { color: var(--jd-ink-dark); }
+
+/* lockup de marca textual */
+.jd-wordmark {
+  font-family: var(--jd-font-display);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--jd-ink);
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5ch;
+}
+.jd-wordmark__glyph { font-family: var(--jd-font-mono); color: var(--jd-magenta); font-weight: 600; }
+.jd-light .jd-wordmark { color: var(--jd-ink-dark); }
+
+/* listras de placeholder de imagem */
+.jd-placeholder {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,.035) 0 12px,
+    transparent 12px 24px
+  );
+  border: 1px dashed var(--jd-line-strong);
+  border-radius: var(--jd-r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--jd-font-mono);
+  font-size: .8rem;
+  color: var(--jd-muted);
+}
