@@ -1,0 +1,103 @@
+.gift-card {
+  background: var(--jd-surface);
+  border: 1px solid var(--jd-line);
+  border-radius: var(--jd-r-lg);
+  padding: var(--jd-s6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--jd-s3);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.gift-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--jd-line-strong);
+}
+.gift-card__img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--jd-r-md);
+  margin-bottom: var(--jd-s2);
+}
+.gift-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gift-card__emoji {
+  font-size: 2rem;
+}
+.gift-card__name {
+  font-family: var(--jd-font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--jd-ink);
+  margin: 0;
+}
+.gift-card__desc {
+  color: var(--jd-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.gift-card__price {
+  font-family: var(--jd-font-mono);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--jd-magenta);
+  letter-spacing: -0.02em;
+  margin: var(--jd-s2) 0;
+}
+.gift-card__actions {
+  display: flex;
+  gap: var(--jd-s2);
+  flex-wrap: wrap;
+}
+.gift-card__actions .jd-btn {
+  font-size: 0.82rem;
+  padding: 0.65em 1.1em;
+  flex: 1;
+  justify-content: center;
+}
+.gift-card__select.is-selected {
+  background: rgba(89, 150, 254, 0.15);
+  border-color: var(--jd-magenta);
+  color: var(--jd-magenta);
+}
+
+/* card selecionado pelo próprio usuário */
+.gift-card.is-mine {
+  border-color: var(--jd-magenta);
+  box-shadow: 0 0 0 1px rgba(89, 150, 254, 0.3);
+}
+
+/* card já escolhido por outra pessoa */
+.gift-card.is-taken {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.gift-card.is-taken-admin {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.gift-card__taken-chip {
+  background: rgba(89, 150, 254, 0.1);
+  border-color: var(--jd-muted-2);
+  color: var(--jd-muted);
+  font-size: 0.7rem;
+}
+.gift-card__select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.gift-card__deselect {
+  border-color: var(--jd-muted-2) !important;
+  color: var(--jd-muted) !important;
+}
+.gift-card__deselect:hover {
+  border-color: var(--jd-magenta) !important;
+  color: var(--jd-magenta) !important;
+}

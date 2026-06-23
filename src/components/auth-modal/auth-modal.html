@@ -1,0 +1,38 @@
+<div class="auth-modal" id="authModal" hidden>
+  <div class="auth-modal__backdrop" id="authBackdrop"></div>
+  <div class="auth-modal__box">
+    <div class="auth-modal__head">
+      <span class="jd-tag">entrar / registrar</span>
+      <button class="auth-modal__close" id="authClose">&times;</button>
+    </div>
+    <form class="auth-modal__form" id="authForm" novalidate>
+      <div class="auth-field">
+        <label class="auth-field__label" for="authName">Nome</label>
+        <input
+          type="text"
+          id="authName"
+          class="auth-input"
+          placeholder="Seu nome completo"
+          required
+        />
+      </div>
+      <div class="auth-field">
+        <label class="auth-field__label" for="authPhone">Telefone</label>
+        <input
+          type="tel"
+          id="authPhone"
+          class="auth-input"
+          placeholder="73 99999-9999"
+          required
+        />
+      </div>
+      <div class="auth-modal__status" id="authStatus" hidden></div>
+      <button type="submit" class="jd-btn jd-btn--primary auth-modal__submit">
+        entrar →
+      </button>
+      <p class="auth-modal__hint">
+        Se você ainda não tem conta, uma será criada automaticamente.
+      </p>
+    </form>
+  </div>
+</div>

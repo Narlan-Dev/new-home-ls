@@ -1,8 +1,3 @@
-/* ===================================================================
-   HOTSITE — Chá de Casa Nova · Samuel & Luana
-   Layout específico da landing. Tokens herdados de juventude-dev.css
-   =================================================================== */
-
 html {
   scroll-behavior: smooth;
 }
@@ -74,7 +69,9 @@ body {
 .nav .jd-btn--primary {
   background: #3a7ae8;
   color: #fff;
-  box-shadow: 0 0 0 1px rgba(58,122,232,.5), 0 8px 20px -8px rgba(58,122,232,.6);
+  box-shadow:
+    0 0 0 1px rgba(58, 122, 232, 0.5),
+    0 8px 20px -8px rgba(58, 122, 232, 0.6);
 }
 .nav__burger {
   display: none;
@@ -645,46 +642,84 @@ section.block {
   border-top: 1px solid var(--jd-line);
 }
 .foot__top {
-  display: flex; flex-direction: column; align-items: center; gap: var(--jd-s3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--jd-s3);
   text-align: center;
 }
-.foot__brand--lg { font-size: 2rem; }
+.foot__brand--lg {
+  font-size: 2rem;
+}
 .foot__phrase {
-  font-family: var(--jd-font-body); font-size: 1.05rem;
-  color: var(--jd-muted); margin: 0; font-style: italic;
+  font-family: var(--jd-font-body);
+  font-size: 1.05rem;
+  color: var(--jd-muted);
+  margin: 0;
+  font-style: italic;
 }
 .foot__divider {
-  width: 60px; height: 1px; background: var(--jd-line-strong);
+  width: 60px;
+  height: 1px;
+  background: var(--jd-line-strong);
   margin: var(--jd-s7) auto;
 }
 .foot__bottom {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: var(--jd-s5); flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jd-s5);
+  flex-wrap: wrap;
 }
 .foot__credits {
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .foot__label {
-  font-family: var(--jd-font-mono); font-size: .72rem; font-weight: 600;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--jd-muted-2);
+  font-family: var(--jd-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jd-muted-2);
 }
 .foot__name {
-  font-family: var(--jd-font-display); font-size: 1rem; font-weight: 600; color: var(--jd-ink);
+  font-family: var(--jd-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--jd-ink);
 }
 .foot__role {
-  font-family: var(--jd-font-mono); font-size: .82rem; color: var(--jd-muted);
+  font-family: var(--jd-font-mono);
+  font-size: 0.82rem;
+  color: var(--jd-muted);
 }
 .foot__contact {
-  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
 }
 .foot__link {
-  font-family: var(--jd-font-mono); font-size: .85rem; color: var(--jd-magenta);
-  text-decoration: none; transition: color .15s;
+  font-family: var(--jd-font-mono);
+  font-size: 0.85rem;
+  color: var(--jd-magenta);
+  text-decoration: none;
+  transition: color 0.15s;
 }
-.foot__link:hover { color: var(--jd-ink); }
+.foot__link:hover {
+  color: var(--jd-ink);
+}
 @media (max-width: 760px) {
-  .foot__bottom { flex-direction: column; align-items: center; text-align: center; }
-  .foot__contact { align-items: center; }
+  .foot__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .foot__contact {
+    align-items: center;
+  }
 }
 
 /* =================== BTN sizing on hero =================== */
@@ -706,82 +741,6 @@ section.block {
     opacity: 1;
     transform: none;
   }
-}
-
-/* =================== LISTA DE PRESENTES =================== */
-.gifts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--jd-s5);
-}
-.gift-card {
-  background: var(--jd-surface);
-  border: 1px solid var(--jd-line);
-  border-radius: var(--jd-r-lg);
-  padding: var(--jd-s6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--jd-s3);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
-}
-.gift-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--jd-line-strong);
-}
-.gift-card__img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: var(--jd-r-md);
-  margin-bottom: var(--jd-s2);
-}
-.gift-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.gift-card__emoji {
-  font-size: 2rem;
-}
-.gift-card__name {
-  font-family: var(--jd-font-display);
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--jd-ink);
-  margin: 0;
-}
-.gift-card__desc {
-  color: var(--jd-muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  margin: 0;
-  flex: 1;
-}
-.gift-card__price {
-  font-family: var(--jd-font-mono);
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: var(--jd-magenta);
-  letter-spacing: -0.02em;
-  margin: var(--jd-s2) 0;
-}
-.gift-card__actions {
-  display: flex;
-  gap: var(--jd-s2);
-  flex-wrap: wrap;
-}
-.gift-card__actions .jd-btn {
-  font-size: 0.82rem;
-  padding: 0.65em 1.1em;
-  flex: 1;
-  justify-content: center;
-}
-.gift-card__select.is-selected {
-  background: rgba(89, 150, 254, 0.15);
-  border-color: var(--jd-magenta);
-  color: var(--jd-magenta);
 }
 
 /* =================== PIX BOX =================== */

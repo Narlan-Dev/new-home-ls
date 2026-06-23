@@ -1,0 +1,11 @@
+.gifts__add-btn {
+  margin-bottom: var(--jd-s5);
+}
+.gifts__add-btn[hidden] {
+  display: none;
+}
+.gifts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--jd-s5);
+}

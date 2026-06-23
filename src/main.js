@@ -1,158 +1,83 @@
-import { $, showStatus } from './modules/ui.js';
-import { loadSettings, saveSettings } from './modules/settings.js';
-import { addObjetivo, removeObjetivo } from './modules/objetivos.js';
-import {
-  addTopico,
-  addAnatomia,
-  removeAnatomia,
-  removeTopico,
-  toggleTopico,
-  syncTopicoTitle,
-  toggleCodigo,
-  toggleImagem,
-  toggleConteudoMode,
-  toggleAtividadeMode,
-} from './modules/topicos.js';
-import { buildPilaresInputs } from './modules/pilares.js';
-import { collectFormData } from './modules/collect.js';
-import { generate, showPreview, downloadFile } from './modules/generate.js';
+const sections = [
+  '/pages/home/nav.html',
+  '/pages/home/hero.html',
+  '/pages/home/stats.html',
+  '/pages/home/about.html',
+  '/pages/home/schedule.html',
+  '/pages/home/gifts/gifts.html',
+  '/pages/home/faq.html',
+  '/pages/home/pix.html',
+  '/pages/home/footer.html',
+  '/components/auth-modal/auth-modal.html',
+  '/components/confirm-modal/confirm-modal.html',
+  '/components/gift-item/gift-item.html',
+  '/components/add-gift-modal/add-gift-modal.html',
+];
 
-function init() {
-  loadSettings();
-  buildPilaresInputs();
-  addObjetivo('O aluno consegue fazer X');
-  addObjetivo('O aluno entende Y');
-  addObjetivo('O aluno aplica Z');
-  addTopico({ titulo: 'Tópico 1', conteudo: '' });
+Promise.all(sections.map((s) => fetch(s).then((r) => r.text()))).then(
+  (htmls) => {
+    document.getElementById('app').innerHTML = htmls.join('\n');
+    init();
+  },
+);
 
-  // API settings panel
-  $('settingsBtn').onclick = () => {
-    $('settingsPanel').hidden = !$('settingsPanel').hidden;
-  };
-  $('saveApiKey').onclick = saveSettings;
-  $('toggleApiKey').onclick = () => {
-    const input = $('apiKeyInput');
-    const isPassword = input.type === 'password';
-    input.type = isPassword ? 'text' : 'password';
-    $('toggleApiKey').textContent = isPassword ? 'ocultar' : 'mostrar';
-  };
-
-  // Pilares / Princípio toggles
-  $('pilaresToggle').onchange = (e) => {
-    $('pilaresBody').hidden = !e.target.checked;
-  };
-  $('principioToggle').onchange = (e) => {
-    $('principioBody').hidden = !e.target.checked;
-  };
-
-  // Add buttons
-  $('addObjetivoBtn').onclick = () => addObjetivo();
-  $('addTopicoBtn').onclick = () => addTopico();
-
-  // Copiar prompt para Claude Code / claude.ai
-  $('copyPromptBtn').onclick = () => {
-    const data = collectFormData();
-    const aulaId = String(data.aula).padStart(2, '0');
-    const prompt = `Gera slides.html e apostila.html para a aula abaixo. Salve em output/aula-${aulaId}/ seguindo o design system.\n\nJSON:\n${JSON.stringify(data, null, 2)}`;
-    navigator.clipboard.writeText(prompt).then(() => {
-      showStatus('Prompt copiado! Cole no Claude Code (VS Code) ou em claude.ai para gerar o material.', 'success');
-    }).catch(() => {
-      $('jsonPreview').textContent = prompt;
-      $('jsonModal').hidden = false;
-    });
-  };
-
-  // JSON preview modal
-  $('previewJsonBtn').onclick = () => {
-    $('jsonPreview').textContent = JSON.stringify(collectFormData(), null, 2);
-    $('jsonModal').hidden = false;
-  };
-  $('closeJsonModal').onclick = () => {
-    $('jsonModal').hidden = true;
-  };
-  $('jsonModalBackdrop').onclick = () => {
-    $('jsonModal').hidden = true;
-  };
-
-  // Close preview frame
-  $('closePreviewBtn').onclick = () => {
-    $('previewFrame').hidden = true;
-    $('previewIframe').src = '';
-  };
-
-  // Form submit
-  $('aulaForm').onsubmit = generate;
-
-  // Spin animation for loading state
-  const style = document.createElement('style');
-  style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-  document.head.appendChild(style);
-
-  // Handles all dynamic elements created by addTopico() and addObjetivo()
-  $('objetivosContainer').addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-action="remove-objetivo"]');
-    if (btn) removeObjetivo(btn);
-  });
-
-  $('topicosContainer').addEventListener('click', (e) => {
-    const removeAnatomiaBtn = e.target.closest(
-      '[data-action="remove-anatomia"]',
-    );
-    if (removeAnatomiaBtn) {
-      removeAnatomia(removeAnatomiaBtn);
-      return;
-    }
-
-    const addAnatomiaBtn = e.target.closest('[data-action="add-anatomia"]');
-    if (addAnatomiaBtn) {
-      addAnatomia(addAnatomiaBtn.dataset.id);
-      return;
-    }
-
-    const removeTopicoBtn = e.target.closest('[data-action="remove-topico"]');
-    if (removeTopicoBtn) {
-      e.stopPropagation();
-      removeTopico(removeTopicoBtn);
-      return;
-    }
-
-    const header = e.target.closest('[data-action="toggle-topico"]');
-    if (header) toggleTopico(header.dataset.id);
-  });
-
-  $('topicosContainer').addEventListener('input', (e) => {
-    const input = e.target.closest('[data-action="sync-topico-title"]');
-    if (input) syncTopicoTitle(input.dataset.id, input.value);
-  });
-
-  $('topicosContainer').addEventListener('change', (e) => {
-    const codigoToggle = e.target.closest('[data-action="toggle-codigo"]');
-    if (codigoToggle) {
-      toggleCodigo(codigoToggle.dataset.id, codigoToggle.checked);
-      return;
-    }
-
-    const imagemToggle = e.target.closest('[data-action="toggle-imagem"]');
-    if (imagemToggle) {
-      toggleImagem(imagemToggle.dataset.id, imagemToggle.checked);
-      return;
-    }
-
-    const conteudoRadio = e.target.closest('[data-action="toggle-conteudo-mode"]');
-    if (conteudoRadio) {
-      toggleConteudoMode(conteudoRadio.dataset.id, conteudoRadio.dataset.mode);
-      return;
-    }
-
-    const atividadeRadio = e.target.closest(
-      '[data-action="toggle-atividade-mode"]',
-    );
-    if (atividadeRadio)
-      toggleAtividadeMode(
-        atividadeRadio.dataset.id,
-        atividadeRadio.dataset.mode,
-      );
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    document.body.appendChild(s);
   });
 }
 
-document.addEventListener('DOMContentLoaded', init);
+function init() {
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navlinks');
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  links
+    .querySelectorAll('a')
+    .forEach((a) =>
+      a.addEventListener('click', () => links.classList.remove('open')),
+    );
+
+  document.getElementById('copyPix').addEventListener('click', () => {
+    navigator.clipboard.writeText('73991154203').then(() => {
+      const btn = document.getElementById('copyPix');
+      btn.textContent = 'copiado!';
+      setTimeout(() => (btn.textContent = 'copiar chave PIX →'), 2000);
+    });
+  });
+
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document
+      .querySelectorAll('.reveal')
+      .forEach((el) => el.classList.add('in'));
+  }
+
+  Promise.all([
+    loadScript('/components/confirm-modal/confirm-modal.js'),
+    loadScript('/components/gift-item/gift-item.js'),
+    loadScript('/components/gift-card/gift-card.js'),
+    loadScript('/components/add-gift-modal/add-gift-modal.js'),
+    loadScript('/modules/auth.js'),
+  ]).then(() => {
+    initConfirmModal();
+    initGiftItem();
+    initAddGift();
+    initAuth();
+    loadGifts();
+  });
+}

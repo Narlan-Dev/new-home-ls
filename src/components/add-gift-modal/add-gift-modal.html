@@ -1,0 +1,61 @@
+<div class="add-gift-modal" id="addGiftModal" hidden>
+  <div class="add-gift-modal__backdrop" id="addGiftBackdrop"></div>
+  <div class="add-gift-modal__box">
+    <div class="add-gift-modal__head">
+      <span class="jd-tag">novo presente</span>
+      <button class="add-gift-modal__close" id="addGiftClose">&times;</button>
+    </div>
+    <form class="add-gift-modal__form" id="addGiftForm" novalidate>
+      <div class="add-gift-modal__preview" id="addGiftPreview">
+        <span class="add-gift-modal__preview-placeholder">preview da imagem</span>
+      </div>
+
+      <div class="add-gift-field">
+        <label class="add-gift-field__label" for="addGiftName">Nome</label>
+        <input type="text" id="addGiftName" class="add-gift-input" placeholder="Ex: Jogo de Panelas" required />
+      </div>
+
+      <div class="add-gift-field__row">
+        <div class="add-gift-field">
+          <label class="add-gift-field__label" for="addGiftCategory">Categoria</label>
+          <select id="addGiftCategory" class="add-gift-input add-gift-select" required>
+            <option value="">selecione</option>
+            <option value="cozinha">Cozinha</option>
+            <option value="eletro">Eletrodoméstico</option>
+            <option value="quarto">Quarto</option>
+            <option value="banho">Banho</option>
+            <option value="sala">Sala</option>
+            <option value="lavanderia">Lavanderia</option>
+            <option value="decoracao">Decoração</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="add-gift-field">
+          <label class="add-gift-field__label" for="addGiftPrice">Preço (R$)</label>
+          <input type="number" id="addGiftPrice" class="add-gift-input" placeholder="0.00" step="0.01" min="0" required />
+        </div>
+      </div>
+
+      <div class="add-gift-field">
+        <label class="add-gift-field__label" for="addGiftDesc">Descrição</label>
+        <textarea id="addGiftDesc" class="add-gift-input add-gift-textarea" rows="3" placeholder="Breve descrição do presente..."></textarea>
+      </div>
+
+      <div class="add-gift-field">
+        <label class="add-gift-field__label" for="addGiftLink">Link para compra</label>
+        <input type="url" id="addGiftLink" class="add-gift-input" placeholder="https://..." />
+      </div>
+
+      <div class="add-gift-field">
+        <label class="add-gift-field__label" for="addGiftImage">URL da imagem</label>
+        <input type="url" id="addGiftImage" class="add-gift-input" placeholder="https://... ou /public/gift.png" />
+      </div>
+
+      <div class="add-gift-modal__status" id="addGiftStatus" hidden></div>
+
+      <button type="submit" class="jd-btn jd-btn--primary add-gift-modal__submit">
+        adicionar presente →
+      </button>
+    </form>
+  </div>
+</div>
