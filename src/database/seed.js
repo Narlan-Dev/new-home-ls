@@ -70,8 +70,8 @@ const GIFTS = [
 ];
 
 const ADMINS = [
-  { name: 'LaryssaADM', phone: '7391306647', role: 'ADMIN' },
-  { name: 'SamuelADM', phone: '7391154203', role: 'ADMIN' },
+  { name: 'LaryssaADM', phone: '+5573991306647', role: 'ADMIN' },
+  { name: 'SamuelADM', phone: '+5573991154203', role: 'ADMIN' },
 ];
 
 const INSERT_GIFT = `

@@ -1,4 +1,5 @@
 const { getConnection } = require('../../../database/connection');
+const { sendGiftNotification } = require('../../whatsapp');
 
 async function getAll() {
   const conn = await getConnection();
@@ -15,7 +16,10 @@ async function getAll() {
 
 async function selectGift(giftId, userId) {
   const conn = await getConnection();
-  const [gift] = await conn.execute('SELECT selected_by FROM gifts WHERE id = ?', [giftId]);
+  const [gift] = await conn.execute(
+    'SELECT selected_by FROM gifts WHERE id = ?',
+    [giftId],
+  );
 
   if (!gift.length) {
     await conn.end();
@@ -27,14 +31,37 @@ async function selectGift(giftId, userId) {
     return { error: 'Este presente já foi escolhido.', status: 409 };
   }
 
-  await conn.execute('UPDATE gifts SET selected_by = ?, selected_at = NOW() WHERE id = ?', [userId, giftId]);
+  await conn.execute(
+    'UPDATE gifts SET selected_by = ?, selected_at = NOW() WHERE id = ?',
+    [userId, giftId],
+  );
+
+  const [giftInfo] = await conn.execute(
+    'SELECT name, price FROM gifts WHERE id = ?',
+    [giftId],
+  );
+  const [userInfo] = await conn.execute(
+    'SELECT name, phone FROM users WHERE id = ?',
+    [userId],
+  );
   await conn.end();
+
+  sendGiftNotification({
+    giftName: giftInfo[0].name,
+    giftPrice: giftInfo[0].price,
+    userName: userInfo[0].name,
+    userPhone: userInfo[0].phone,
+  }).catch(() => {});
+
   return { selected: true };
 }
 
 async function deselectGift(giftId) {
   const conn = await getConnection();
-  const [gift] = await conn.execute('SELECT selected_by FROM gifts WHERE id = ?', [giftId]);
+  const [gift] = await conn.execute(
+    'SELECT selected_by FROM gifts WHERE id = ?',
+    [giftId],
+  );
 
   if (!gift.length) {
     await conn.end();
@@ -46,24 +73,54 @@ async function deselectGift(giftId) {
     return { error: 'Este presente não está selecionado.', status: 400 };
   }
 
-  await conn.execute('UPDATE gifts SET selected_by = NULL, selected_at = NULL WHERE id = ?', [giftId]);
+  await conn.execute(
+    'UPDATE gifts SET selected_by = NULL, selected_at = NULL WHERE id = ?',
+    [giftId],
+  );
   await conn.end();
   return { selected: false };
 }
 
-async function createGift({ name, category, description, price, link, image_url }) {
+async function createGift({
+  name,
+  category,
+  description,
+  price,
+  link,
+  image_url,
+}) {
   const conn = await getConnection();
   const [result] = await conn.execute(
     'INSERT INTO gifts (name, category, description, price, link, image_url) VALUES (?, ?, ?, ?, ?, ?)',
-    [name, category, description || null, price, link || null, image_url || null],
+    [
+      name,
+      category,
+      description || null,
+      price,
+      link || null,
+      image_url || null,
+    ],
   );
   await conn.end();
-  return { id: result.insertId, name, category, description, price, link, image_url };
+  return {
+    id: result.insertId,
+    name,
+    category,
+    description,
+    price,
+    link,
+    image_url,
+  };
 }
 
-async function updateGift(giftId, { name, category, description, price, link, image_url }) {
+async function updateGift(
+  giftId,
+  { name, category, description, price, link, image_url },
+) {
   const conn = await getConnection();
-  const [gift] = await conn.execute('SELECT id FROM gifts WHERE id = ?', [giftId]);
+  const [gift] = await conn.execute('SELECT id FROM gifts WHERE id = ?', [
+    giftId,
+  ]);
   if (!gift.length) {
     await conn.end();
     return { error: 'Presente não encontrado.', status: 404 };
@@ -71,7 +128,15 @@ async function updateGift(giftId, { name, category, description, price, link, im
 
   await conn.execute(
     'UPDATE gifts SET name = ?, category = ?, description = ?, price = ?, link = ?, image_url = ? WHERE id = ?',
-    [name, category, description || null, price, link || null, image_url || null, giftId],
+    [
+      name,
+      category,
+      description || null,
+      price,
+      link || null,
+      image_url || null,
+      giftId,
+    ],
   );
   await conn.end();
   return { id: giftId, name, category, description, price, link, image_url };
@@ -79,7 +144,9 @@ async function updateGift(giftId, { name, category, description, price, link, im
 
 async function deleteGift(giftId) {
   const conn = await getConnection();
-  const [gift] = await conn.execute('SELECT id FROM gifts WHERE id = ?', [giftId]);
+  const [gift] = await conn.execute('SELECT id FROM gifts WHERE id = ?', [
+    giftId,
+  ]);
   if (!gift.length) {
     await conn.end();
     return { error: 'Presente não encontrado.', status: 404 };
@@ -90,4 +157,11 @@ async function deleteGift(giftId) {
   return { deleted: true };
 }
 
-module.exports = { getAll, selectGift, deselectGift, createGift, updateGift, deleteGift };
+module.exports = {
+  getAll,
+  selectGift,
+  deselectGift,
+  createGift,
+  updateGift,
+  deleteGift,
+};

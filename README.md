@@ -29,7 +29,14 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=sua_senha
 DB_NAME=sl_db
+
+TWILIO_ACCOUNT_SID=seu_account_sid
+TWILIO_AUTH_TOKEN=seu_auth_token
+TWILIO_WHATSAPP_FROM=+14155238886
+WHATSAPP_NOTIFY_NUMBER=+5573999999999
 ```
+
+> **WhatsApp:** As variaveis `TWILIO_*` e `WHATSAPP_NOTIFY_NUMBER` sao opcionais. Se `WHATSAPP_NOTIFY_NUMBER` nao estiver definida, nenhuma notificacao e enviada. Para usar o sandbox gratuito do Twilio, o destinatario precisa enviar a mensagem de opt-in a cada 72h.
 
 ## Banco de dados
 
@@ -78,11 +85,12 @@ src/
     gifts.routes.js                    # GET/POST /api/gifts, select, deselect, update, delete
   modules/
     auth.js                            # auth frontend (localStorage, modal, login/logout)
+    whatsapp.js                        # notificacao WhatsApp via Twilio
     home/
       auth/
         auth.service.js                # logica de autenticacao (backend)
       gifts/
-        gifts.service.js               # CRUD de presentes (backend)
+        gifts.service.js               # CRUD de presentes + notificacao (backend)
   pages/home/
     nav.html                           # navegacao
     hero.html                          # hero com foto do casal
