@@ -76,6 +76,8 @@ async function handleAddGiftSubmit(e) {
   }
 
   const payload = { name, category, description, price, link, image_url, userId: user.id, role: user.role };
+  const submitBtn = document.querySelector('.add-gift-modal__submit');
+  setButtonLoading(submitBtn, true);
 
   try {
     const isEdit = !!_editingGiftId;
@@ -92,13 +94,16 @@ async function handleAddGiftSubmit(e) {
 
     if (!res.ok) {
       showAddGiftStatus(data.error || 'Erro.', 'error');
+      setButtonLoading(submitBtn, false);
       return;
     }
 
+    setButtonLoading(submitBtn, false);
     closeAddGift();
     if (window.loadGifts) loadGifts();
   } catch {
     showAddGiftStatus('Erro de conexão.', 'error');
+    setButtonLoading(submitBtn, false);
   }
 }
 

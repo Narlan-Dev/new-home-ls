@@ -21,6 +21,28 @@ Promise.all(sections.map((s) => fetch(s).then((r) => r.text()))).then(
   },
 );
 
+function dismissPageLoader() {
+  const loader = document.getElementById('pageLoader');
+  if (!loader) return;
+  loader.classList.add('is-done');
+  setTimeout(() => loader.remove(), 400);
+}
+
+function setButtonLoading(btn, loading) {
+  if (loading) {
+    btn.classList.add('is-loading');
+    if (!btn.querySelector('.sl-spinner')) {
+      btn.dataset.originalText = btn.textContent;
+      btn.innerHTML = `<span class="sl-btn-text">${btn.textContent}</span><div class="sl-spinner"></div>`;
+    }
+  } else {
+    btn.classList.remove('is-loading');
+    btn.textContent = btn.dataset.originalText || btn.textContent;
+  }
+}
+
+window.setButtonLoading = setButtonLoading;
+
 function loadScript(src) {
   return new Promise((resolve) => {
     const s = document.createElement('script');
@@ -73,11 +95,12 @@ function init() {
     loadScript('/components/gift-card/gift-card.js'),
     loadScript('/components/add-gift-modal/add-gift-modal.js'),
     loadScript('/modules/auth.js'),
-  ]).then(() => {
+  ]).then(async () => {
     initConfirmModal();
     initGiftItem();
     initAddGift();
     initAuth();
-    loadGifts();
+    await loadGifts();
+    dismissPageLoader();
   });
 }

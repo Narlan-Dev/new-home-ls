@@ -67,6 +67,9 @@ async function handleSubmit(e) {
     return;
   }
 
+  const submitBtn = document.querySelector('.auth-modal__submit');
+  setButtonLoading(submitBtn, true);
+
   try {
     const res = await fetch('/api/auth', {
       method: 'POST',
@@ -78,6 +81,7 @@ async function handleSubmit(e) {
 
     if (!res.ok) {
       showStatus(data.error || 'Erro ao entrar.', 'error');
+      setButtonLoading(submitBtn, false);
       return;
     }
 
@@ -95,6 +99,8 @@ async function handleSubmit(e) {
     }
   } catch {
     showStatus('Erro de conexão.', 'error');
+  } finally {
+    setButtonLoading(submitBtn, false);
   }
 }
 

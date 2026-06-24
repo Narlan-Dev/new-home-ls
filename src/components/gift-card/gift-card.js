@@ -61,6 +61,10 @@ async function loadGifts() {
   const container = document.getElementById('giftsContainer');
   if (!container) return;
 
+  if (!_giftsCache.length) {
+    container.innerHTML = '<div class="sl-gifts-loading"><div class="sl-spinner sl-spinner--lg"></div></div>';
+  }
+
   try {
     const res = await fetch('/api/gifts');
     _giftsCache = await res.json();
@@ -100,7 +104,7 @@ async function confirmAndSelect(btn, user) {
   const confirmed = await openConfirm(`Deseja selecionar "${giftName}" como seu presente?`);
   if (!confirmed) return;
 
-  btn.disabled = true;
+  setButtonLoading(btn, true);
 
   try {
     const res = await fetch(`/api/gifts/${btn.dataset.gift}/select`, {
@@ -112,14 +116,14 @@ async function confirmAndSelect(btn, user) {
     const data = await res.json();
     if (!res.ok) {
       alert(data.error);
-      btn.disabled = false;
+      setButtonLoading(btn, false);
       return;
     }
 
     loadGifts();
   } catch {
     alert('Erro de conexão.');
-    btn.disabled = false;
+    setButtonLoading(btn, false);
   }
 }
 
@@ -148,7 +152,7 @@ async function handleGiftDeselect(btn) {
   const confirmed = await openConfirm(`Desmarcar "${giftName}"? Essa ação libera o presente para outros.`);
   if (!confirmed) return;
 
-  btn.disabled = true;
+  setButtonLoading(btn, true);
 
   try {
     const res = await fetch(`/api/gifts/${btn.dataset.gift}/deselect`, {
@@ -160,14 +164,14 @@ async function handleGiftDeselect(btn) {
     const data = await res.json();
     if (!res.ok) {
       alert(data.error);
-      btn.disabled = false;
+      setButtonLoading(btn, false);
       return;
     }
 
     loadGifts();
   } catch {
     alert('Erro de conexão.');
-    btn.disabled = false;
+    setButtonLoading(btn, false);
   }
 }
 
