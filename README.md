@@ -125,10 +125,10 @@ src/
 
 ## Admins padrao (seed)
 
-| Nome        | Telefone    |
-|-------------|-------------|
-| LaryssaADM  | 7391306647  |
-| SamuelADM   | 7391154203  |
+| Nome        | Telefone     |
+|-------------|------------- |
+| LaryssaADM  | +557391306647|
+| SamuelADM   | +557391154203|
 
 ## Creditos
 
