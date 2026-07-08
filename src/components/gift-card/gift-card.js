@@ -69,6 +69,7 @@ async function loadGifts() {
     const res = await fetch('/api/gifts');
     _giftsCache = await res.json();
     container.innerHTML = _giftsCache.map(renderGiftCard).join('');
+    container.classList.add('in');
     bindGiftButtons();
   } catch {
     container.innerHTML = '<p style="color:var(--jd-muted)">Erro ao carregar presentes.</p>';
